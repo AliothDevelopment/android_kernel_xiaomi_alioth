@@ -260,7 +260,7 @@
 			hw-thd-dat = <16>;
 			hw-thd-sta = <15>;
 			hw-tbuf = <24>;
-			hw-scl-stretch-en = <0>;
+			hw-scl-stretch-en = <1>;
 			hw-trdhld = <3>;
 			hw-tsp = <3>;
 			cci-clk-src = <37500000>;
@@ -353,7 +353,7 @@
 			hw-thd-dat = <16>;
 			hw-thd-sta = <15>;
 			hw-tbuf = <24>;
-			hw-scl-stretch-en = <0>;
+			hw-scl-stretch-en = <1>;
 			hw-trdhld = <3>;
 			hw-tsp = <3>;
 			cci-clk-src = <37500000>;
@@ -430,7 +430,7 @@
 				<&apps_smmu 0x2420 0x400>,
 				<&apps_smmu 0x2421 0x400>;
 			label = "icp";
-			qcom,iommu-dma-addr-pool = <0x10c00000 0xee300000>;
+			qcom,iommu-dma-addr-pool = <0x17600000 0xe7900000>;
 			iova-region-discard = <0xdff00000 0x300000>;
 			icp_iova_mem_map: iova-mem-map {
 				iova-mem-region-firmware {
@@ -443,10 +443,10 @@
 				};
 
 				iova-mem-region-shared {
-					/* Shared region is 150MB long */
+					/* Shared region is 268MB long */
 					iova-region-name = "shared";
 					iova-region-start = <0x7400000>;
-					iova-region-len = <0x9600000>;
+					iova-region-len = <0x10000000>;
 					iova-region-id = <0x1>;
 					status = "ok";
 				};
@@ -454,7 +454,7 @@
 				iova-mem-region-secondary-heap {
 					/* Secondary heap region is 1MB long */
 					iova-region-name = "secheap";
-					iova-region-start = <0x10a00000>;
+					iova-region-start = <0x17400000>;
 					iova-region-len = <0x100000>;
 					iova-region-id = <0x4>;
 					status = "ok";
@@ -463,8 +463,8 @@
 				iova-mem-region-io {
 					/* IO region is approximately 3.7 GB */
 					iova-region-name = "io";
-					iova-region-start = <0x10c00000>;
-					iova-region-len = <0xee300000>;
+					iova-region-start = <0x17600000>;
+					iova-region-len = <0xe7900000>;
 					iova-region-id = <0x3>;
 					iova-region-discard = <0xdff00000 0x300000>;
 					status = "ok";
@@ -473,7 +473,7 @@
 				iova-mem-qdss-region {
 					/* QDSS region is appropriate 1MB */
 					iova-region-name = "qdss";
-					iova-region-start = <0x10b00000>;
+					iova-region-start = <0x17500000>;
 					iova-region-len = <0x100000>;
 					iova-region-id = <0x5>;
 					qdss-phy-addr = <0x16790000>;
@@ -1437,11 +1437,11 @@
 		camss-supply = <&titan_top_gdsc>;
 		clock-names =
 			"ife_csid_clk_src",
+			"ife_lite_ahb",
 			"ife_csid_clk",
 			"cphy_rx_clk_src",
 			"ife_cphy_rx_clk",
 			"ife_clk_src",
-			"ife_lite_ahb",
 			"ife_clk";
 		clocks =
 			<&clock_camcc CAM_CC_IFE_LITE_CSID_CLK_SRC>,
